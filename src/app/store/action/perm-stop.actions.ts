@@ -15,7 +15,7 @@ export class PermStopAdd implements Action {
 
 export class PermStopRemove implements Action {
   readonly type = PermStopActionTypes.PermStopRemove;
-  constructor(public ardi: string) {}
+  constructor(public ardis: string[]) {}
 }
 
 // Exports Union type

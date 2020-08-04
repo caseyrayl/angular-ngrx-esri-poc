@@ -1,0 +1,7 @@
+<div>
+    <select class="multi-select" multiple [(ngModel)]="selectedPermStopId">
+        <option *ngFor="let stop of stopService.stops">{{stop.activeRouteDetailsID}}</option>
+    </select>
+</div>
+<button (click)="addRandomStop()">Add Stop</button>
+<button (click)="removeSelectedStops()">Remove Stop(s)</button>

@@ -8,5 +8,5 @@ const getPermStopState = (state: AppState) => state.permStops;
  */
 export const getPermStopValues = createSelector(
   getPermStopState,
-  state => state
+  state => state.stops
 );

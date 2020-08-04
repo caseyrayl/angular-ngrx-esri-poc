@@ -15,8 +15,8 @@ export function permStopReducer(state = initiaPermStopsState, action: PermStopAc
     }
 
     case PermStopActionTypes.PermStopRemove: {
-      const stops = _.remove(state.stops, (stop: PermanentStop) => {
-        return stop.activeRouteDetailsID === action.ardi;
+      const stops = state.stops.filter((stop: PermanentStop) => {
+        return !action.ardis.includes(stop.activeRouteDetailsID);
       });
       return {
         ...state,
