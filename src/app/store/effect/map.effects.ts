@@ -5,7 +5,7 @@ import { Actions, ofType, Effect } from '@ngrx/effects';
 import { Store, Action } from '@ngrx/store';
 
 // Services
-import { MapService } from 'src/app/service/map.service';
+import { GraphicService } from 'src/app/service/graphic.service';
 
 // NgRx
 import { AppState } from '../state/app.state';
@@ -22,7 +22,7 @@ export class MapEffects {
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
-    private mapService: MapService
+    private graphicService: GraphicService
   ) { }
 
   @Effect({ dispatch: false })
@@ -34,7 +34,7 @@ export class MapEffects {
     map(([action , appState]) => {
       const typedAction: PermStopAdd = action as PermStopAdd;
       console.log(`Add graphic map effect handler for ${typedAction.type}, updating map graphics.`);
-      this.mapService.addPermStop(typedAction.permStop);
+      this.graphicService.addPermStop(typedAction.permStop);
     })
   );
 
@@ -47,7 +47,7 @@ export class MapEffects {
     map(([action , appState]) => {
       const typedAction: PermStopRemove = action as PermStopRemove;
       console.log(`Remove graphic map effect handler for ${typedAction.type}, updating map graphics.`);
-      this.mapService.removePermStops(typedAction.stops);
+      this.graphicService.removePermStops(typedAction.stops);
     })
   );
 }
