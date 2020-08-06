@@ -18,10 +18,12 @@ export class StopListComponent implements OnInit {
   }
 
   public addRandomStop() {
+    const lon = Math.random() * 1.8 - 112.8;
+    const lat = Math.random() * 1.2 + 33;
     const stop: PermanentStop = {
       activeRouteDetailsID: uuidv4(),
-      latitude: 0,
-      longitude: 0
+      longitude: lon,
+      latitude: lat,
     };
     this.stopService.addStop(stop);
   }

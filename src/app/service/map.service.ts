@@ -49,7 +49,7 @@ export class MapService {
         symbol: {
           type: 'simple-marker',
           color: 'green',
-          size: '8px'
+          size: '16px'
         },
         geometry: this.EsriUtils.geographicToWebMercator(point)
       };

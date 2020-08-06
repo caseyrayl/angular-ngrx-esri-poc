@@ -7,9 +7,11 @@ import { AppComponent } from './app.component';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 import { appReducers } from './store/reducer/app.reducer';
 import { MapComponent } from './component/map/map.component';
 import { StopListComponent } from './component/stop-list/stop-list.component';
+import { MapEffects } from './store/effect/map.effects';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { StopListComponent } from './component/stop-list/stop-list.component';
       maxAge: 25,
       logOnly: environment.production
     }),
+    EffectsModule.forRoot([MapEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
