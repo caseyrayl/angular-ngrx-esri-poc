@@ -9,7 +9,7 @@ import { MapService } from 'src/app/service/map.service';
 
 // NgRx
 import { AppState } from '../state/app.state';
-import { PermStopActionTypes, PermStopAdd } from '../action/perm-stop.actions';
+import { PermStopActionTypes, PermStopAdd, PermStopRemove } from '../action/perm-stop.actions';
 
 /**
  * Effects that update filter state based on global state changes.
@@ -35,8 +35,19 @@ export class MapEffects {
       const typedAction: PermStopAdd = action as PermStopAdd;
       console.log(`Add graphic map effect handler for ${typedAction.type}, updating map graphics.`);
       this.mapService.addPermStop(typedAction.permStop);
+    })
+  );
 
-      // return new FilterActions.ExpressionSegmentsUpdate(segements);
+  @Effect({ dispatch: false })
+  mapRemoveGraphicsAction$: Observable<void> = this.actions$.pipe(
+    ofType(
+      PermStopActionTypes.PermStopRemove,
+    ),
+    concatMap((action) => of(action).pipe(withLatestFrom(this.store.pipe()))),
+    map(([action , appState]) => {
+      const typedAction: PermStopRemove = action as PermStopRemove;
+      console.log(`Remove graphic map effect handler for ${typedAction.type}, updating map graphics.`);
+      this.mapService.removePermStops(typedAction.stops);
     })
   );
 }

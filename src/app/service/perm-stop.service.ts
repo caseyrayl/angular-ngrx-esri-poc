@@ -23,8 +23,8 @@ export class PermStopService {
     this.store.dispatch(action);
   }
 
-  public removeStop(ardi: string[]) {
-    const action = new PermStopRemove(ardi);
+  public removeStop(stops: PermanentStop[]) {
+    const action = new PermStopRemove(stops);
     this.store.dispatch(action);
   }
 }

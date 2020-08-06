@@ -46,6 +46,9 @@ export class MapService {
         latitude: stop.latitude
       });
       const graphicOptions: any = {
+        attributes: {
+          activeRouteDetailsID: stop.activeRouteDetailsID
+        },
         symbol: {
           type: 'simple-marker',
           color: 'green',
@@ -55,6 +58,17 @@ export class MapService {
       };
       const graphic: esri.Graphic = new this.EsriGraphic(graphicOptions);
       this.mapView.graphics.add(graphic);
+    }
+  }
+
+  public removePermStops(stops: PermanentStop[]) {
+    if (this.mapView) {
+      // translate stops to graphics
+      const stopIds = stops.map((stop) => stop.activeRouteDetailsID);
+      const graphics = this.mapView.graphics.filter((graphic) => {
+        return stopIds.includes(graphic.attributes.activeRouteDetailsID);
+      });
+      this.mapView.graphics.removeMany(graphics);
     }
   }
 

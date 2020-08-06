@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class StopListComponent implements OnInit {
 
-  public selectedPermStopId: string[];
+  public selectedPermStops: PermanentStop[];
 
   constructor(public stopService: PermStopService) { }
 
@@ -29,8 +29,8 @@ export class StopListComponent implements OnInit {
   }
 
   public removeSelectedStops() {
-    if (this.selectedPermStopId && this.selectedPermStopId.length) {
-      this.stopService.removeStop(this.selectedPermStopId);
+    if (this.selectedPermStops && this.selectedPermStops.length) {
+      this.stopService.removeStop(this.selectedPermStops);
     }
   }
 }
